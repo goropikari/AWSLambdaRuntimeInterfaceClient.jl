@@ -1,5 +1,5 @@
-import AWSLambdaRuntimeInterfaceClients
-const ric = AWSLambdaRuntimeInterfaceClients
+import AWSLambdaRuntimeInterfaceClient
+const ric = AWSLambdaRuntimeInterfaceClient
 
 # Make handler
 function handler(event, context)

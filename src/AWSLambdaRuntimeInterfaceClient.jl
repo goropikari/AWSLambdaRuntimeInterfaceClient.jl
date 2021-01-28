@@ -1,7 +1,7 @@
 # AWS Lambda runtime API
 # https://docs.aws.amazon.com/lambda/latest/dg/runtimes-api.html
 
-module AWSLambdaRuntimeInterfaceClients
+module AWSLambdaRuntimeInterfaceClient
 
 import HTTP
 import JSON
