@@ -1,3 +1,6 @@
+# AWS Lambda runtime API
+# https://docs.aws.amazon.com/lambda/latest/dg/runtimes-api.html
+
 module AWSLambdaRuntimeInterfaceClients
 
 import HTTP
@@ -10,7 +13,7 @@ end
 
 function next_invocation()
     res = HTTP.get("$(BASE_URL)/invocation/next")
-    body = String(res.body)
+    body = JSON.parse(String(res.body))
     headers = Dict(res.headers)
     return headers, body
 end
@@ -27,7 +30,7 @@ function invocation_error(request_id)
                 "errorMessage" => "Error parsing event data.")
     headers = Dict("Content-type" => "application/json",
                    "Lambda-Runtime-Function-Error-Type" => "Unhandled")
-    HTTP.post(url, headers, JSON.json(body))
+    HTTP.post(url, headers, body)
 end
 
 function initialization_error()
@@ -36,7 +39,7 @@ function initialization_error()
     headers = Dict("Content-type" => "application/json",
                    "Lambda-Runtime-Function-Error-Type" => "Unhandled")
     url = "$(BASE_URL)/init/error"
-    HTTP.post(url, headers, JSON.json(body))
+    HTTP.post(url, headers, body)
 end
 
 function execute(handler)
@@ -46,15 +49,12 @@ function execute(handler)
             state = :start
             headers, body = next_invocation()
             request_id = headers["Lambda-Runtime-Aws-Request-Id"]
-            # @info "Received event" request_id
             state = :received
 
             response  = handler(body, headers)
-            # @info "Got response from handler" response
             state = :handled
 
             invocation_response(request_id, response)
-            # @info "notified lambda runtime"
             state = :finished
         catch ex
             if state == :start
