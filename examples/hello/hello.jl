@@ -8,5 +8,5 @@ function handler(event, context)
     return "Hello World! $(JSON.json(event))"
 end
 
-# Pass handler to RIC and execute
+# Pass handler to RIC and start
 ric.start(handler)
