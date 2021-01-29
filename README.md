@@ -60,3 +60,5 @@ $ docker run -v $(pwd)/aws-lambda-rie:/aws-lambda-rie \
 $ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"name":"John"}'
 Hello World! {"name":"John"}
 ```
+
+This package is inspired by [tk3369/aws-lambda-container-julia](https://github.com/tk3369/aws-lambda-container-julia).
