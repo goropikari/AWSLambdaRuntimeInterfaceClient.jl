@@ -8,8 +8,5 @@ function handler(event, context)
     return "Hello World! $(JSON.json(event))"
 end
 
-# Initialize RIC
-ric.init()
-
 # Pass handler to RIC and execute
-ric.execute(handler)
+ric.start(handler)

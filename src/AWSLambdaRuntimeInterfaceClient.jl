@@ -6,7 +6,7 @@ module AWSLambdaRuntimeInterfaceClient
 import HTTP
 import JSON
 
-function init()
+function _init()
     global AWS_LAMBDA_RUNTIME_API = ENV["AWS_LAMBDA_RUNTIME_API"]
     global BASE_URL = "http://$(AWS_LAMBDA_RUNTIME_API)/2018-06-01/runtime"
 end
@@ -42,7 +42,8 @@ function initialization_error()
     HTTP.post(url, headers, body)
 end
 
-function execute(handler)
+function start(handler)
+    _init()
     while true
         local state, request_id
         try
