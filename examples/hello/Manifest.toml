@@ -2,7 +2,7 @@
 
 [[AWSLambdaRuntimeInterfaceClient]]
 deps = ["HTTP", "JSON"]
-git-tree-sha1 = "dcc41b2de27b7806326edc4a21028642f8b83fb7"
+git-tree-sha1 = "bbd07937083c55ed16bae02efc39bb84cec8e992"
 repo-rev = "main"
 repo-url = "https://github.com/goropikari/AWSLambdaRuntimeInterfaceClient.jl"
 uuid = "f70b8da9-77fa-4237-9c91-5f7afb4d62ab"
