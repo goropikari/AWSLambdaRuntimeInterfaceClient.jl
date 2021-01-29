@@ -1,9 +1,10 @@
 FROM julia:1.5.3
 
-RUN julia -e 'using Pkg; Pkg.add(url="https://github.com/goropikari/AWSLambdaRuntimeInterfaceClient.jl"); Pkg.precompile()'
-
-
 WORKDIR /var/task
+COPY Project.toml .
+COPY Manifest.toml .
 COPY hello.jl .
 
-ENTRYPOINT ["/usr/local/julia/bin/julia", "hello.jl"]
+RUN julia --project=. -e "using Pkg; Pkg.instantiate(); Pkg.precompile()"
+
+ENTRYPOINT ["/usr/local/julia/bin/julia", "--project=.", "hello.jl"]

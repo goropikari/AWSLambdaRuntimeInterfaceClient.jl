@@ -6,8 +6,8 @@ docker run -v $(pwd)/aws-lambda-rie:/aws-lambda-rie \
     -p 9000:8080 \
     --entrypoint=/aws-lambda-rie \
     lambda_julia \
-    /usr/local/julia/bin/julia hello.jl
+    /usr/local/julia/bin/julia --project=. hello.jl
 
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
-Hello World!
+Hello World! {"name":"John"}
 ```

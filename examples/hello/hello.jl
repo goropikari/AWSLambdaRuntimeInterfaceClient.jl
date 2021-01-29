@@ -1,9 +1,11 @@
 import AWSLambdaRuntimeInterfaceClient
 const ric = AWSLambdaRuntimeInterfaceClient
 
+import JSON
+
 # Make handler
 function handler(event, context)
-    return "Hello World!"
+    return "Hello World! $(JSON.json(event))"
 end
 
 # Initialize RIC

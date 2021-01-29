@@ -1,0 +1,6 @@
+[compat]
+julia = "1"
+
+[deps]
+AWSLambdaRuntimeInterfaceClient = "f70b8da9-77fa-4237-9c91-5f7afb4d62ab"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
